@@ -1,0 +1,4 @@
+#!/bin/sh
+
+#gcc -g -c -fPIC -O2 -Iid-objmodel-1.1 TEST1.c
+gcc -g -O2 TEST1.o -o TEST1
