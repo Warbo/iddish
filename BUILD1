@@ -1,4 +1,4 @@
 #!/bin/sh
 
-gcc -g -c -fPIC -O2 -Iid-objmodel-1.1 TEST1.c
-#gcc -g -O2 TEST1.o -o TEST1
+gcc -g -c -fPIC -O2 -Iid-objmodel-1.1 C1TEST.c
+gcc -g -O2 C1TEST.o -o C1TEST

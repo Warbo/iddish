@@ -168,7 +168,7 @@ namechar ::= <startchar> | '0' | '1' | '2' | '3' | '4' | '5' | '6'
 
 """
 
-test = """
+initialiser = """
 
 EMBEDDED_C{{{
   // Import the Id object model
@@ -330,5 +330,23 @@ for key in locals().keys():
 
 grammar = OMeta.makeGrammar(strip_comments(grammar_def), params)
 
-matcher = grammar(test)
-print matcher.apply('program')
+if __name__ == '__main__':
+	if len(sys.argv) < 2:
+		print "Usage: iddish_compiler.py input.id [output.c]"
+		sys.exit()
+
+	in_name = sys.argv[1]
+	if len(sys.argv) > 2:
+		out_name = sys.argv[2]
+	else:
+		out_name = in_name.rsplit('.', 1)[0]+'.c'
+	
+	in_file = open(in_name, 'r')
+	in_lines = ''.join([l for l in in_file.readlines()])
+	in_file.close()
+
+	matcher = grammar(initialiser+in_lines)
+	
+	out_file = open(out_name, 'w')
+	out_file.write(matcher.apply('program'))
+	out_file.close()
